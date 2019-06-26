@@ -1,0 +1,90 @@
+﻿@section scripts {
+    @Scripts.Render("~/bundles/app")
+}
+
+<div class="page-header">
+</div>
+
+<div class="row">
+
+    <div class="col-md-4 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Feedbacks</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: feedbacks">
+                    <li>
+                        <strong><span data-bind="text: Name"></span></strong>
+                        <small><a href="#" data-bind="click: $parent.getFeedbackDetail">Details</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+    </div>
+
+    <!-- ko if:detail() -->
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Detail</h2>
+            </div>
+            <table class="table">
+                <tr><td>Name</td><td data-bind="text: detail().Name"></td></tr>
+                <tr><td>Phone</td><td data-bind="text: detail().Phone"></td></tr>
+                <tr><td>Email</td><td data-bind="text: detail().Email"></td></tr>
+                <tr><td>Message</td><td data-bind="text: detail().Message"></td></tr>
+            </table>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Оставить отзыв</button>
+        </div>
+    </div>
+
+
+    <div id="myModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog  modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">x</button>
+                    <h4 class="modal-title col-sm-10 col-md-push-1">ОБРАТНАЯ СВЯЗЬ</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="form" data-bind="submit: addFeedback">
+                        <div class="form-group" data-bind="with: newFeedback">
+                            <label for="inputName" class="col-sm-2 col-md-push-4 control-label">Имя</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="text" class="form-control" id="inputName" placeholder="Введите имя" data-bind="value:Name" />
+                            </div>
+
+                            <label for="inputPhone" class="col-sm-2 col-md-push-4  control-label">Телефон</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="number" class="form-control" id="inputPhone" placeholder="Введите телефон" data-bind="value:Phone" />
+                            </div>
+
+                            <label for="inputEmail" class="col-sm-2 col-md-push-4 control-label">Email</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Введите email" data-bind="value:Email" />
+                            </div>
+
+                            <label for="inputMessage" class="col-sm-4 col-md-push-4 control-label">Сообщение</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="text" class="form-control" id="inputMessage" placeholder="Введите сообщение" data-bind="value:Message" />
+                                
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary col-sm-6 col-sm-push-3" >ОТПРАВИТЬ</button>
+                        <br /> <br />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
