@@ -117,7 +117,16 @@ namespace FeedbackHandler.Controllers
             db.Feedbacks.Remove(feedback);
             await db.SaveChangesAsync();
 
-            return Ok(feedback);
+            var feedbacks = from fbs in db.Feedbacks
+                            select new FeedbackDTO()
+                            {
+                                Id = fbs.Id,
+                                Name = fbs.Name
+                            };
+
+            return Ok(feedbacks);
+
+            // return Ok(GetFeedbacks());
         }
 
         protected override void Dispose(bool disposing)

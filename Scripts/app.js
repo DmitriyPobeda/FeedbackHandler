@@ -3,8 +3,10 @@
     self.feedbacks = ko.observableArray();
     self.error = ko.observable();
 
+
+
     var feedbacksUri = 'api/feedbacks/';
-    
+
     function ajaxHelper(uri, method, data) {
         //  По умолчанию значение переменной error будет равно пустой строке
         self.error('');
@@ -19,6 +21,7 @@
         });
     }
 
+    // GET . Получить все кортежи из БД
     function getAllFeedbacks() {
         ajaxHelper(feedbacksUri, 'GET').done(function (data) {
             self.feedbacks(data);
@@ -27,6 +30,8 @@
 
     getAllFeedbacks();
 
+
+    // GET (id). Получить по id
     self.detail = ko.observable();
 
     self.getFeedbackDetail = function (item) {
@@ -35,6 +40,8 @@
         });
     }
 
+
+    // POST . Создать кортеж
     self.newFeedback = {
         Name: ko.observable(),
         Phone: ko.observable(),
@@ -55,9 +62,28 @@
         });
     }
 
-    $('#myModal').on('hide', function () {
-        self.clearCurrentCompany();
-    });
-};
+    //DELETE id . Удалить один элемент
+    self.killer = ko.observable();
+
+    self.deleteFeedback = function (item) {
+        ajaxHelper(feedbacksUri + item.Id, 'DELETE').done(function (data) {
+            self.killer(data.Id);
+        });
+    };
+
+    /*Reset fields in form
+    self.resetFields = {
+        Name = ko.observable(),
+        Phone = ko.observable(),
+        Email = ko.observable(),
+        Message = ko.observable()
+    }
+    self.reset = function () {
+        self.Name = ('');
+        self.Phone = ('');
+        self.Email = ('');
+        self.Message = ('');
+    }.bind(self); */
+}
 
 ko.applyBindings(new ViewModel());
