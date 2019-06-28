@@ -71,19 +71,10 @@
         });
     };
 
-    /*Reset fields in form
-    self.resetFields = {
-        Name = ko.observable(),
-        Phone = ko.observable(),
-        Email = ko.observable(),
-        Message = ko.observable()
+    // Очистка значений формы
+    self.clearForm = function () {
+        $('form input[type="text"], form input[type="number"], form textarea').val('');
     }
-    self.reset = function () {
-        self.Name = ('');
-        self.Phone = ('');
-        self.Email = ('');
-        self.Message = ('');
-    }.bind(self); */
 }
 
 ko.applyBindings(new ViewModel());
