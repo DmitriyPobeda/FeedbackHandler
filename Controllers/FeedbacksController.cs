@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace FeedbackHandler.Controllers
         [ResponseType(typeof(FeedbackDetailDTO))]
         public async Task<IHttpActionResult> GetFeedback(int id)
         {
-            var feedback = await db.Feedbacks.Select(fbs =>
+            var feedbackDerivable = await db.Feedbacks.Select(fbs =>
             new FeedbackDetailDTO()
             {
                 Id = fbs.Id,
@@ -39,13 +40,26 @@ namespace FeedbackHandler.Controllers
                 Phone = fbs.Phone,
                 Email = fbs.Email,
                 Message = fbs.Message
-            }).SingleOrDefaultAsync(fbs => fbs.Id == id);
-            if (feedback == null)
+            }).SingleOrDefaultAsync(fbs => fbs.Id == id);   
+
+            var feedbackDispatched = new FeedbackDispatchedDetailDTO();
+            feedbackDispatched.Id = feedbackDerivable.Id;
+            feedbackDispatched.Name = feedbackDerivable.Name;
+            feedbackDispatched.Phone = Convert.ToString(feedbackDerivable.Phone);
+            feedbackDispatched.Email = feedbackDerivable.Email;
+            feedbackDispatched.Message = feedbackDerivable.Message;
+
+            if (feedbackDispatched.Phone == "0")
             {
-                return NotFound();
+                feedbackDispatched.Phone = "Empty";
             }
 
-            return Ok(feedback);
+            if (feedbackDispatched.Email == null)
+            {
+                feedbackDispatched.Email = "Empty";
+            }
+
+            return Ok(feedbackDispatched);
         }
 
         // PUT: api/Feedbacks/5

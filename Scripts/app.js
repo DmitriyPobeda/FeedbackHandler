@@ -36,6 +36,11 @@
 
     self.getFeedbackDetail = function (item) {
         ajaxHelper(feedbacksUri + item.Id, 'GET').done(function (data) {
+    /*           
+    *   if (data().Phone == 0) {
+    *       data().Phone = " ";
+    *   }
+    */
             self.detail(data);
         });
     }

@@ -173,6 +173,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\FeedbackDetailDTO.cs" />
+    <Compile Include="Models\FeedbackDispatchedDetailDTO.cs" />
     <Compile Include="Models\FeedbackDTO.cs" />
     <Compile Include="Models\FeedbackHandlerContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,13 +9,16 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <style>
-        .raz {
-            -moz-appearance: textfield;
+        .raz::-webkit-inner-spin-button {
+            display: none;
         }
 
-            .raz::-webkit-inner-spin-button {
-                display: none;
-            }
+        .perenos {
+        margin:15px;
+        padding:15px;
+        width:270px;
+        word-break:break-all;
+        }
     </style>
 </head>
 <body>

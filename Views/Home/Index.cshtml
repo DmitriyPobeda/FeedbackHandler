@@ -27,16 +27,16 @@
     </div>
 
     <!-- ko if:detail() -->
-    <div class="col-md-4">
+    <div class="col-md-4 col-md-push-2">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Detail</h2>
             </div>
             <table class="table">
-                <tr><td>Name</td><td data-bind="text: detail().Name"></td></tr>
-                <tr><td>Phone</td><td data-bind="text: detail().Phone"></td></tr>
-                <tr><td>Email</td><td data-bind="text: detail().Email"></td></tr>
-                <tr><td>Message</td><td data-bind="text: detail().Message"></td></tr>
+                <tr><td>Name</td><td class="perenos" data-bind="text: detail().Name"></td></tr>
+                <tr><td>Phone</td><td class="perenos" data-bind="text: detail().Phone"></td></tr>
+                <tr><td>Email</td><td class="perenos" data-bind="text: detail().Email"></td></tr>
+                <tr><td>Message</td><td class="perenos" data-bind="text: detail().Message"></td></tr>
             </table>
         </div>
     </div>
@@ -63,7 +63,7 @@
                     <div class="form-group" data-bind="with: newFeedback">
                         <label for="inputName" class="col-sm-2 col-md-push-4 control-label">Имя</label>
                         <div class="col-sm-10 col-md-offset-1">
-                            <input type="text" class="form-control" id="inputName" placeholder="Введите имя" data-bind="value:Name" />
+                            <input type="text"  class="form-control" id="inputName" placeholder="Введите имя" data-bind="value:Name" />
                         </div>
 
                         <label for="inputPhone" class="col-sm-2 col-md-push-4  control-label">Телефон</label>
@@ -78,7 +78,7 @@
 
                         <label for="inputMessage" class="col-sm-4 col-md-push-4 control-label">Сообщение</label>
                         <div class="col-sm-10 col-md-offset-1">
-                            <input type="text" class="form-control" id="inputMessage" placeholder="Введите сообщение" data-bind="value:Message" />
+                            <textarea class="form-control" id="inputMessage" rows="4" maxlength="250"  placeholder="Введите отзыв" data-bind="value:Message"></textarea>
                         </div>
                     </div>
                     <br />
@@ -87,6 +87,10 @@
                     <br />
                 </form>
             </div>
+
+            <div class="modal-body">
+            </div>
+
         </div>
     </div>
 </div>
