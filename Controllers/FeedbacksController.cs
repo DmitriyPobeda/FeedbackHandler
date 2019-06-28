@@ -40,7 +40,7 @@ namespace FeedbackHandler.Controllers
                 Phone = fbs.Phone,
                 Email = fbs.Email,
                 Message = fbs.Message
-            }).SingleOrDefaultAsync(fbs => fbs.Id == id);   
+            }).SingleOrDefaultAsync(fbs => fbs.Id == id);
 
             var feedbackDispatched = new FeedbackDispatchedDetailDTO();
             feedbackDispatched.Id = feedbackDerivable.Id;
