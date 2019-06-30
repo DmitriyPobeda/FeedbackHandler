@@ -3,10 +3,7 @@
     self.feedbacks = ko.observableArray();
     self.error = ko.observable();
 
-
-
-    var feedbacksUri = 'api/feedbacks/';
-
+    var feedbacksUri = 'api/Feedbacks/';
     function ajaxHelper(uri, method, data) {
         //  По умолчанию значение переменной error будет равно пустой строке
         self.error('');
@@ -21,20 +18,19 @@
         });
     }
 
-    // GET . Получить все кортежи из БД
-    function getAllFeedbacks() {
+    // GET . Получить все строки из БД
+    function getFeedbacks() {
         ajaxHelper(feedbacksUri, 'GET').done(function (data) {
             self.feedbacks(data);
         });
     }
-
-    getAllFeedbacks();
+    getFeedbacks();
 
 
     // GET (id). Получить по id
     self.detail = ko.observable();
 
-    self.getFeedbackDetail = function (item) {
+    self.getFeedback = function (item) {
         ajaxHelper(feedbacksUri + item.Id, 'GET').done(function (data) {
             self.detail(data);
         });
@@ -42,7 +38,7 @@
 
 
     // POST . Создать кортеж
-    self.newFeedback = {
+    self.objFeedback = {
         Name: ko.observable(),
         Phone: ko.observable(),
         Email: ko.observable(),
@@ -51,10 +47,10 @@
 
     self.addFeedback = function (formElement) {
         var feedback = {
-            Name: self.newFeedback.Name(),
-            Phone: self.newFeedback.Phone(),
-            Email: self.newFeedback.Email(),
-            Message: self.newFeedback.Message()
+            Name: self.objFeedback.Name(),
+            Phone: self.objFeedback.Phone(),
+            Email: self.objFeedback.Email(),
+            Message: self.objFeedback.Message()
         };
         ajaxHelper(feedbacksUri, 'POST', feedback).done(function (item) {
             self.feedbacks.push(item);
@@ -62,11 +58,12 @@
     }
 
     //DELETE id . Удалить один элемент
-    self.killer = ko.observable();
+    self.kill = ko.observable();
 
-    self.deleteFeedback = function (item) {
+    self.removeFeedback = function (item) {
         ajaxHelper(feedbacksUri + item.Id, 'DELETE').done(function (data) {
-            self.killer(data.Id);
+            self.kill(data.Id);
+            getFeedbacks();
         });
     };
 
