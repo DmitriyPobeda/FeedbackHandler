@@ -27,17 +27,17 @@
         <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
     </div>
 
-    <!-- ko if:detail() -->
+    <!-- ko if:detailFeedback() -->
     <div class="col-md-4 col-md-push-2">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">Detail</h2>
             </div>
             <table class="table">
-                <tr><td>Name</td><td class="perenos" data-bind="text: detail().Name"></td></tr>
-                <tr><td>Phone</td><td class="perenos" data-bind="text: detail().Phone"></td></tr>
-                <tr><td>Email</td><td class="perenos" data-bind="text: detail().Email"></td></tr>
-                <tr><td>Message</td><td class="perenos" data-bind="text: detail().Message"></td></tr>
+                <tr><td>Name</td><td class="perenos" data-bind="text: detailFeedback().Name"></td></tr>
+                <tr><td>Phone</td><td class="perenos" data-bind="text: detailFeedback().Phone"></td></tr>
+                <tr><td>Email</td><td class="perenos" data-bind="text: detailFeedback().Email"></td></tr>
+                <tr><td>Message</td><td class="perenos" data-bind="text: detailFeedback().Message"></td></tr>
             </table>
         </div>
     </div>

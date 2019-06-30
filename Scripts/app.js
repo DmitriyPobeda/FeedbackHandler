@@ -5,7 +5,6 @@
 
     var feedbacksUri = 'api/Feedbacks/';
     function ajaxHelper(uri, method, data) {
-        //  По умолчанию значение переменной error будет равно пустой строке
         self.error('');
         return $.ajax({
             type: method,
@@ -18,7 +17,7 @@
         });
     }
 
-    // GET . Получить все строки из БД
+    // GET . Получить все отзывы
     function getFeedbacks() {
         ajaxHelper(feedbacksUri, 'GET').done(function (data) {
             self.feedbacks(data);
@@ -27,17 +26,17 @@
     getFeedbacks();
 
 
-    // GET (id). Получить по id
-    self.detail = ko.observable();
+    // GET (id). Получить отзыв
+    self.detailFeedback = ko.observable();
 
-    self.getFeedback = function (item) {
-        ajaxHelper(feedbacksUri + item.Id, 'GET').done(function (data) {
-            self.detail(data);
+    self.getFeedback = function (data) {
+        ajaxHelper(feedbacksUri + data.Id, 'GET').done(function (element) {
+            self.detailFeedback(element);
         });
     }
 
 
-    // POST . Создать кортеж
+    // POST . Создать отзыв
     self.objFeedback = {
         Name: ko.observable(),
         Phone: ko.observable(),
@@ -52,17 +51,15 @@
             Email: self.objFeedback.Email(),
             Message: self.objFeedback.Message()
         };
-        ajaxHelper(feedbacksUri, 'POST', feedback).done(function (item) {
-            self.feedbacks.push(item);
+        ajaxHelper(feedbacksUri, 'POST', feedback).done(function (element) {
+            self.feedbacks.push(element);
         });
     }
 
-    //DELETE id . Удалить один элемент
-    self.kill = ko.observable();
-
-    self.removeFeedback = function (item) {
-        ajaxHelper(feedbacksUri + item.Id, 'DELETE').done(function (data) {
-            self.kill(data.Id);
+    //DELETE id . Удалить определенный отзыв
+    self.removeFeedback = function (data) {
+        ajaxHelper(feedbacksUri + data.Id, 'DELETE').done(function (element) {
+            self.feedbacks.remove(element.Id);
             getFeedbacks();
         });
     };
@@ -71,7 +68,6 @@
     self.clearForm = function () {
         $('form input[type="text"], form input[type="number"], form textarea').val('');
     }
-
 }
 
 ko.applyBindings(new ViewModel());
