@@ -56,7 +56,6 @@
             Email: self.newFeedback.Email(),
             Message: self.newFeedback.Message()
         };
-
         ajaxHelper(feedbacksUri, 'POST', feedback).done(function (item) {
             self.feedbacks.push(item);
         });
@@ -76,8 +75,6 @@
         $('form input[type="text"], form input[type="number"], form textarea').val('');
     }
 
-    //Валидация формы
-    
 }
 
 ko.applyBindings(new ViewModel());
