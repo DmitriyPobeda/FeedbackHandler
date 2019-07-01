@@ -2,8 +2,7 @@
     var self = this;
     self.feedbacks = ko.observableArray();
     self.error = ko.observable();
-    self.validateMessage1 = ko.observable(false);
-    self.validateMessage2 = ko.observable(false);
+
 
     var feedbacksUri = 'api/Feedbacks/';
     function ajaxHelper(uri, method, data) {
@@ -27,7 +26,6 @@
     }
     getFeedbacks();
 
-
     // GET (id). Получить отзыв
     self.detailFeedback = ko.observable();
 
@@ -38,42 +36,47 @@
     }
 
     // POST . Создать отзыв
+        self.validateMessage1 = ko.observable();
+        self.validateMessage2 = ko.observable();
     self.objFeedback = {
-        Name: ko.observable(),
-        Phone: ko.observable(),
-        Email: ko.observable(),
-        Message: ko.observable()
+        Name: ko.observable(undefined),
+        Phone: ko.observable(undefined),
+        Email: ko.observable(undefined),
+        Message: ko.observable(undefined)
     }
-
+    self.clearVarMemory = function () {
+        self.objFeedback.Name(undefined);
+        self.objFeedback.Phone(undefined);
+        self.objFeedback.Email(undefined);
+        self.objFeedback.Message(undefined);
+    }
     self.addFeedback = function (formElement) {
+        self.validateMessage1(false);
+        self.validateMessage2(false);
         var feedback = {
             Name: self.objFeedback.Name(),
             Phone: self.objFeedback.Phone(),
             Email: self.objFeedback.Email(),
             Message: self.objFeedback.Message()
         };
-        /*
-        if (feedback.Name == null | feedback.Message == null) {
-            console.log("-- --");
-            if (feedback.Name != null && feedback.Message == null) {
-                console.log("norm null");
-                return false;
-            }else if (feedback.Name == null && feedback.Message != null) {
-                console.log("null norm");
-                return false;
-            } else if (feedback.Name == null && feedback.Message == null) {
-                console.log("null null")
-                return false;
+
+        if (feedback.Name != undefined && feedback.Message != undefined) {
+            ajaxHelper(feedbacksUri, 'POST', feedback).done(function (element) {
+                self.feedbacks.push(element);
+            });
+            self.clearVarMemory();
+        } else if (feedback.Name == undefined || feedback.Message == undefined) {
+            if (feedback.Name != undefined && feedback.Message == undefined) {
+                self.validateMessage2(true);
             }
+            else if (feedback.Name == undefined && feedback.Message != undefined) {
+                self.validateMessage1(true);
+            }
+
+            else { self.validateMessage1(true); self.validateMessage2(true);}
+            self.clearVarMemory();
+            return false;
         } 
-        else if (feedback.Name != "" && feedback.Message != "") {
-            console.log(typeof feedback.Name);
-            console.log(typeof feedback.Message);
-        } 
-        */
-        ajaxHelper(feedbacksUri, 'POST', feedback).done(function (element) {
-            self.feedbacks.push(element);
-        });
     }
 
     //DELETE id . Удалить определенный отзыв
@@ -87,6 +90,8 @@
     // Очистка значений формы
     self.clearForm = function () {
         $('form input[type="text"], form input[type="number"], form textarea').val('');
+        self.validateMessage1(false);
+        self.validateMessage2(false);
     }
 }
 

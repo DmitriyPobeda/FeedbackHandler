@@ -63,33 +63,41 @@
             <div class="modal-body">
                 <form class="form-horizontal" id="form" data-bind="submit: addFeedback">
                     <div class="form-group" data-bind="with: objFeedback">
-                        <label for="inputName" class="col-sm-2 col-md-push-4 control-label"><span style="color: red">*</span>Имя</label>
-                        <div class="col-sm-10 col-md-offset-1">
-                            <input type="text" class="form-control" id="inputName" placeholder="Введите имя" data-bind="value:Name" />
-                            <div data-bind="visible: $parent.validateMessage1">
-                                <p><small><span style="color: red">Данное поле является обязательным</span></small></p>
+                        <div class="form-group">
+                            <label for="inputName" class="col-sm-2 col-md-push-4 control-label"><span style="color: red">*</span>Имя</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="text" class="form-control" id="inputName" placeholder="Введите имя" data-bind="value:Name" />
+                                <div data-bind="visible: $parent.validateMessage1" class="form-control">
+                                    <p><small><span style="color: red">Данное поле является обязательным</span></small></p>
+                                </div>
                             </div>
                         </div>
 
-                        <label for="inputPhone" class="col-sm-2 col-md-push-4  control-label">Телефон</label>
-                        <div class="col-sm-10 col-md-offset-1">
-                            <input type="number" class="form-control raz" id="inputPhone" placeholder="Введите телефон" data-bind="value:Phone" />
-                        </div>
-
-                        <label for="inputEmail" class="col-sm-2 col-md-push-4 control-label">Email</label>
-                        <div class="col-sm-10 col-md-offset-1">
-                            <input type="text" class="form-control" id="inputEmail" placeholder="Введите email" data-bind="value:Email" />
-                        </div>
-
-                        <label for="inputMessage" class="col-sm-4 col-md-push-4 control-label"><span style="color: red">*</span>Сообщение</label>
-                        <div class="col-sm-10 col-md-offset-1">
-                            <textarea class="form-control" id="inputMessage" rows="4" maxlength="250" placeholder="Введите отзыв" data-bind="value:Message"></textarea>
-                            <div data-bind="visible: $parent.validateMessage2">
-                                <p><small><span style="color: red">Данное поле является обязательным</span></small></p>
+                        <div class="form-group">
+                            <label for="inputPhone" class="col-sm-2 col-md-push-4  control-label">Телефон</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="number" class="form-control raz" id="inputPhone" placeholder="Введите телефон" data-bind="value:Phone" />
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 col-md-push-4 control-label">Email</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Введите email" data-bind="value:Email" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputMessage" class="col-sm-4 col-md-push-4 control-label"><span style="color: red">*</span>Сообщение</label>
+                            <div class="col-sm-10 col-md-offset-1">
+                                <textarea class="form-control" id="inputMessage" rows="4" maxlength="250" placeholder="Введите отзыв" data-bind="value:Message"></textarea>
+                                <div data-bind="visible: $parent.validateMessage2" class="form-control">
+                                    <p><small><span style="color: red">Данное поле является обязательным</span></small></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <br />
                     <div class="form-group">
                         <button type="submit" class="btn btn-xs btn-success col-sm-4 col-md-push-1">Отправка</button>
                         <button class="btn btn-xs btn-danger col-sm-4 col-md-push-3" data-bind="click: clearForm">Сброс</button>
