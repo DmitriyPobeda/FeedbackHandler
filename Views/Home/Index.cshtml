@@ -66,8 +66,8 @@
                         <label for="inputName" class="col-sm-2 col-md-push-4 control-label"><span style="color: red">*</span>Имя</label>
                         <div class="col-sm-10 col-md-offset-1">
                             <input type="text" class="form-control" id="inputName" placeholder="Введите имя" data-bind="value:Name" />
-                            <div>
-                                <p><small><span style="color: red">Это поле является обязательным</span></small></p>
+                            <div data-bind="visible: $parent.validateMessage1">
+                                <p><small><span style="color: red">Данное поле является обязательным</span></small></p>
                             </div>
                         </div>
 
@@ -84,8 +84,8 @@
                         <label for="inputMessage" class="col-sm-4 col-md-push-4 control-label"><span style="color: red">*</span>Сообщение</label>
                         <div class="col-sm-10 col-md-offset-1">
                             <textarea class="form-control" id="inputMessage" rows="4" maxlength="250" placeholder="Введите отзыв" data-bind="value:Message"></textarea>
-                            <div>
-                                <p><small><span style="color: red">Это поле является обязательным</span></small></p>
+                            <div data-bind="visible: $parent.validateMessage2">
+                                <p><small><span style="color: red">Данное поле является обязательным</span></small></p>
                             </div>
                         </div>
                     </div>

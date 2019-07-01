@@ -193,3 +193,4 @@ F:\DOCSmicrosoft.Myprojects\FeedbackHandler\obj\Debug\FeedbackHandler.csproj.Cor
 F:\DOCSmicrosoft.Myprojects\FeedbackHandler\obj\Debug\FeedbackHandler.csproj.CopyComplete
 F:\DOCSmicrosoft.Myprojects\FeedbackHandler\obj\Debug\FeedbackHandler.dll
 F:\DOCSmicrosoft.Myprojects\FeedbackHandler\obj\Debug\FeedbackHandler.pdb
+F:\DOCSmicrosoft.Myprojects\FeedbackHandler\obj\Debug\FeedbackHandler.csprojAssemblyReference.cache

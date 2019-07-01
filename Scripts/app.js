@@ -2,6 +2,8 @@
     var self = this;
     self.feedbacks = ko.observableArray();
     self.error = ko.observable();
+    self.validateMessage1 = ko.observable(false);
+    self.validateMessage2 = ko.observable(false);
 
     var feedbacksUri = 'api/Feedbacks/';
     function ajaxHelper(uri, method, data) {
@@ -35,7 +37,6 @@
         });
     }
 
-
     // POST . Создать отзыв
     self.objFeedback = {
         Name: ko.observable(),
@@ -51,6 +52,25 @@
             Email: self.objFeedback.Email(),
             Message: self.objFeedback.Message()
         };
+        /*
+        if (feedback.Name == null | feedback.Message == null) {
+            console.log("-- --");
+            if (feedback.Name != null && feedback.Message == null) {
+                console.log("norm null");
+                return false;
+            }else if (feedback.Name == null && feedback.Message != null) {
+                console.log("null norm");
+                return false;
+            } else if (feedback.Name == null && feedback.Message == null) {
+                console.log("null null")
+                return false;
+            }
+        } 
+        else if (feedback.Name != "" && feedback.Message != "") {
+            console.log(typeof feedback.Name);
+            console.log(typeof feedback.Message);
+        } 
+        */
         ajaxHelper(feedbacksUri, 'POST', feedback).done(function (element) {
             self.feedbacks.push(element);
         });
